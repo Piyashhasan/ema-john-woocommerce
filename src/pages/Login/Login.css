@@ -1,0 +1,37 @@
+.login_container .form_field {
+  max-width: 500px;
+  height: 640px;
+  padding: 20px 40px;
+  color: #2a414f;
+  border: 1px solid #95a0a7;
+  border-radius: 5px;
+  box-shadow: -10px 10px #ffe0b3;
+}
+.login_container .form_field .login_button {
+  background: #ffe0b3;
+  color: black;
+}
+.login_container .form_field .login_button:hover {
+  background: orange;
+  color: #fff;
+}
+.login_container .before_after p {
+  position: relative;
+}
+.login_container .before_after p::before,
+.login_container .before_after p::after {
+  content: "";
+  display: block;
+  width: 165px;
+  height: 1px;
+  background-color: #95a0a7;
+  position: absolute;
+}
+.login_container .before_after p::before {
+  left: 7%;
+  top: 60%;
+}
+.login_container .before_after p::after {
+  right: 7%;
+  top: 60%;
+}

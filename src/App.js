@@ -9,6 +9,7 @@ import Shop from "./pages/Shop/Shop";
 import NavBar from "./reusable-components/Nav/NavBar";
 import Order from "./pages/Order/Order";
 import Inventory from "./pages/Inventory/Inventory";
+import Registration from "./pages/Registration/Registration";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/order" element={<Order />}></Route>
         <Route path="/inventory" element={<Inventory />}></Route>
         <Route path="/login" element={<Login />}></Route>
+        <Route path="/registration" element={<Registration />}></Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </div>
