@@ -4,13 +4,12 @@ import logo from "../../images/Logo.svg";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
-
 const NavBar = () => {
   return (
     <div className="navbar_container">
       <Navbar expand="lg" className="container">
         <Container>
-          <img src={logo} alt="" />
+          <img src={logo} alt="" className="img-fluid" />
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mx-auto">

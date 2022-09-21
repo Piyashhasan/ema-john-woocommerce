@@ -1,19 +1,22 @@
 import React from "react";
 import "./Home.css";
 import bannerImg from "../../images/home.png";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
     <div className="home_container container py-5">
-      <div className="row">
-        <div className="col-md-6">
+      <div className="row p-2">
+        <div className="col-md-6 my-auto">
           <small className="text-warning">Sale up to 70% off</small>
-          <h1>New Collection For Fall</h1>
+          <h1 className="mt-4">New Collection For Fall</h1>
           <p>Discover all the new arrivals of ready-to-wear collection.</p>
-          <button className="btn btn-warning">SHOP NOW</button>
+          <Link to="/shop" className="btn btn-warning mt-4">
+            SHOP NOW
+          </Link>
         </div>
-        <div className="col-md-6">
-          <img className="img-fluid w-75 h-75" src={bannerImg} alt="" />
+        <div className="col-md-6 d-flex justify-content-center">
+          <img className="img-fluid banner_img" src={bannerImg} alt="" />
         </div>
       </div>
     </div>
