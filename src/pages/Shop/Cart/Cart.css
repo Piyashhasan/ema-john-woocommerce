@@ -1,6 +1,6 @@
 .cart_container {
   position: sticky;
-  top: 0;
+  top: 5%;
 }
 .cart_container .cart_text {
   color: #2a414f;

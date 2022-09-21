@@ -2,32 +2,72 @@ import React from "react";
 import "./NavBar.css";
 import logo from "../../images/Logo.svg";
 import { Container, Nav, Navbar } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
+import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
+  // ---------------------------------------
+  // ============== HTML AREA ==============
+  // ---------------------------------------
   return (
     <div className="navbar_container">
       <Navbar expand="lg" className="container">
         <Container>
-          <img src={logo} alt="" className="img-fluid" />
+          <NavLink to="/home">
+            <img src={logo} alt="" className="img-fluid" />
+          </NavLink>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mx-auto">
-              <LinkContainer to="/">
-                <Nav.Link>Home</Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="/shop">
-                <Nav.Link>Shop</Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="/order">
-                <Nav.Link>Order</Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="/inventory">
-                <Nav.Link>Inventory</Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="/login">
-                <Nav.Link>Login</Nav.Link>
-              </LinkContainer>
+              <NavLink
+                className="link"
+                to="/home"
+                style={({ isActive }) => ({
+                  color: isActive ? "orange" : "#fff",
+                  background: isActive ? "#1c2b35" : "#1c2b35",
+                })}
+              >
+                Home
+              </NavLink>
+              <NavLink
+                className="link"
+                to="/shop"
+                style={({ isActive }) => ({
+                  color: isActive ? "orange" : "#fff",
+                  background: isActive ? "#1c2b35" : "#1c2b35",
+                })}
+              >
+                Shop
+              </NavLink>
+              <NavLink
+                className="link"
+                to="/order"
+                style={({ isActive }) => ({
+                  color: isActive ? "orange" : "#fff",
+                  background: isActive ? "#1c2b35" : "#1c2b35",
+                })}
+              >
+                Order
+              </NavLink>
+              <NavLink
+                className="link"
+                to="/inventory"
+                style={({ isActive }) => ({
+                  color: isActive ? "orange" : "#fff",
+                  background: isActive ? "#1c2b35" : "#1c2b35",
+                })}
+              >
+                Inventory
+              </NavLink>
+              <NavLink
+                className="link"
+                to="/login"
+                style={({ isActive }) => ({
+                  color: isActive ? "orange" : "#fff",
+                  background: isActive ? "#1c2b35" : "#1c2b35",
+                })}
+              >
+                Login
+              </NavLink>
             </Nav>
           </Navbar.Collapse>
         </Container>

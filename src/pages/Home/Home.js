@@ -1,6 +1,7 @@
 import React from "react";
 import "./Home.css";
 import bannerImg from "../../images/home.png";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   // ---------------------------------------
@@ -13,9 +14,9 @@ const Home = () => {
           <small className="text-warning">Sale up to 70% off</small>
           <h1 className="mt-4">New Collection For Fall</h1>
           <p>Discover all the new arrivals of ready-to-wear collection.</p>
-          <a href="/shop" className="btn btn-warning mt-4">
+          <Link to="/shop" className="btn btn-warning mt-4">
             SHOP NOW
-          </a>
+          </Link>
         </div>
         <div className="col-md-6 d-flex justify-content-center">
           <img className="img-fluid banner_img" src={bannerImg} alt="" />

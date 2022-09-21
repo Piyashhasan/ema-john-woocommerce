@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Cart.css";
 
 const Cart = () => {
@@ -14,7 +15,9 @@ const Cart = () => {
       </div>
       <div className="button_group text-center mt-4">
         <button className="btn w-75 mb-3 clear_cart_btn">Clear Cart</button>
-        <button className="btn w-75 review_order_btn">Review Order</button>
+        <Link to="/order" className="btn w-75 review_order_btn">
+          Review Order
+        </Link>
       </div>
     </div>
   );
