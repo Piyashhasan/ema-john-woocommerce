@@ -1,0 +1,23 @@
+.cart_container {
+  position: sticky;
+  top: 0;
+}
+.cart_container .cart_text {
+  color: #2a414f;
+}
+.cart_container .button_group .clear_cart_btn {
+  background-color: #ff3030;
+  color: #fff;
+}
+.cart_container .button_group .review_order_btn {
+  background-color: #ff9900;
+  color: #fff;
+}
+.cart_container .button_group .clear_cart_btn:hover {
+  background-color: rgb(255, 0, 0);
+  color: black;
+}
+.cart_container .button_group .review_order_btn:hover {
+  background-color: rgb(255, 115, 0);
+  color: black;
+}
