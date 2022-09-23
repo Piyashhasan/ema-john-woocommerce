@@ -1,12 +1,14 @@
 import React from "react";
 import { Button, Card } from "react-bootstrap";
 import "./Products.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
 
-const Products = (props) => {
+const Products = ({ product, handleAddToCart }) => {
   // ---------------------------------------
   // =============== JS AREA ===============
   // ---------------------------------------
-  const { img, name, price, seller, ratings } = props.product;
+  const { img, name, price, seller, ratings } = product;
 
   // **** cut the porducts name length ****
   const trimmedName =
@@ -28,7 +30,13 @@ const Products = (props) => {
           <Card.Text>
             <small>Rating : {ratings} start</small>
           </Card.Text>
-          <Button className="w-100 mt-3 add_to_cart_btn">Add to Cart</Button>
+          <Button
+            onClick={() => handleAddToCart(product)}
+            className="w-100 mt-3 add_to_cart_btn"
+          >
+            Add to Cart{" "}
+            <FontAwesomeIcon icon={faCartPlus} className="trashIcon" />
+          </Button>
         </Card.Body>
       </Card>
     </div>

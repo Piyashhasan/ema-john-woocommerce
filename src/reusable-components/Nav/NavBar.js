@@ -24,6 +24,7 @@ const NavBar = () => {
                 style={({ isActive }) => ({
                   color: isActive ? "orange" : "#fff",
                   background: isActive ? "#1c2b35" : "#1c2b35",
+                  borderBottom: isActive ? "2px solid orange" : "none",
                 })}
               >
                 Home
@@ -34,6 +35,7 @@ const NavBar = () => {
                 style={({ isActive }) => ({
                   color: isActive ? "orange" : "#fff",
                   background: isActive ? "#1c2b35" : "#1c2b35",
+                  borderBottom: isActive ? "2px solid orange" : "none",
                 })}
               >
                 Shop
@@ -44,6 +46,7 @@ const NavBar = () => {
                 style={({ isActive }) => ({
                   color: isActive ? "orange" : "#fff",
                   background: isActive ? "#1c2b35" : "#1c2b35",
+                  borderBottom: isActive ? "2px solid orange" : "none",
                 })}
               >
                 Order
@@ -54,6 +57,7 @@ const NavBar = () => {
                 style={({ isActive }) => ({
                   color: isActive ? "orange" : "#fff",
                   background: isActive ? "#1c2b35" : "#1c2b35",
+                  borderBottom: isActive ? "2px solid orange" : "none",
                 })}
               >
                 Inventory
@@ -64,6 +68,7 @@ const NavBar = () => {
                 style={({ isActive }) => ({
                   color: isActive ? "orange" : "#fff",
                   background: isActive ? "#1c2b35" : "#1c2b35",
+                  borderBottom: isActive ? "2px solid orange" : "none",
                 })}
               >
                 Login

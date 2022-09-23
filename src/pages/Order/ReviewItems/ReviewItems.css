@@ -1,0 +1,40 @@
+.review_container .review_main {
+  width: 530px;
+  height: 107px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+}
+.review_container .review_main .review_img_text {
+  display: flex;
+  align-items: center;
+}
+.review_container .review_main .review_text {
+  padding: 5px 0;
+}
+.review_container .review_main .review_text p {
+  margin: 0;
+  color: #1c2b35;
+}
+.review_container .review_main .review_text span {
+  color: orange;
+}
+.review_container .review_main .review_product_img img {
+  max-width: 90px;
+  height: 90px;
+  margin-right: 20px;
+  border-radius: 3px;
+}
+.review_container .review_main .review_delete-btn {
+  margin-left: 50%;
+  background: #f9cdcd;
+  border-radius: 50%;
+}
+.review_container .review_main .trashIcon {
+  font-size: 25px;
+  color: #eb5757;
+}
+.review_container .review_main .trashIcon:hover {
+  color: red;
+}
