@@ -8,6 +8,7 @@ const NavBar = () => {
   // ---------------------------------------
   // ============== HTML AREA ==============
   // ---------------------------------------
+
   return (
     <div className="navbar_container">
       <Navbar expand="lg" className="container">

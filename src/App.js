@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
@@ -16,7 +16,10 @@ function App() {
     <div className="App">
       <NavBar></NavBar>
       <Routes>
-        <Route path="/" element={<Home />}></Route>
+        <Route
+          path="/"
+          element={<Navigate to="/home" replace></Navigate>}
+        ></Route>
         <Route path="/home" element={<Home />}></Route>
         <Route path="/shop" element={<Shop />}></Route>
         <Route path="/order" element={<Order />}></Route>
