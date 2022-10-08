@@ -2,49 +2,87 @@ import React from "react";
 import "./Registration.css";
 import googleImg from "../../images/google.svg";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Registration = () => {
+  // ---------------------------------------
+  // =============== JS AREA ===============
+  // ---------------------------------------
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const handleEmail = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const handlePassword = (event) => {
+    if (event.target.value.length < 6) {
+      setError("Password must be at least 6 characters");
+    } else {
+      setPassword(event.target.value);
+      setError("");
+    }
+  };
+
+  const handleConfirmPassword = (event) => {
+    if (password !== event.target.value) {
+      setError("Password did not match..!");
+    } else {
+      setConfirmPassword(event.target.value);
+      setError("");
+    }
+  };
+
+  const handleRegistrationForm = (event) => {
+    event.preventDefault();
+  };
+  // ---------------------------------------
+  // ============== HTML AREA ==============
+  // ---------------------------------------
   return (
     <div className="login_container container py-5">
       <div className="row">
-        <div className="form_field w-50 m-auto ">
-          <h1 className="text-center text-gray mb-5 mt-3">Sign Up</h1>
-          <form className="">
+        <div className="form_field w-50 m-auto">
+          <h1 className="text-center text-gray mb-4">Sign Up</h1>
+          <form onSubmit={handleRegistrationForm}>
             <div className="form-group mb-4">
-              <label for="exampleInputEmail1">Email address</label>
+              <label htmlFor="email">Email address</label>
               <input
                 type="email"
+                onBlur={handleEmail}
                 className="form-control mt-2"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
                 placeholder="Enter email"
               />
             </div>
             <div className="form-group mb-4">
-              <label for="exampleInputPassword1">Password</label>
+              <label htmlFor="password">Password</label>
               <input
                 type="password"
+                onBlur={handlePassword}
                 className="form-control mt-2"
-                id="exampleInputPassword1"
                 placeholder="Password"
               />
+              <p className="text-danger">{error}</p>
             </div>
             <div className="form-group mb-4">
-              <label for="exampleInputPassword1">Confirm Password</label>
+              <label htmlFor="confirmPassword">Confirm Password</label>
               <input
                 type="password"
+                onBlur={handleConfirmPassword}
                 className="form-control mt-2"
-                id="exampleInputPassword1"
                 placeholder="Password"
               />
+              <p className="text-danger">{error}</p>
             </div>
             <input
-              className="btn w-100 mt-4 login_button"
+              className="btn w-100 mt-3 login_button"
               type="submit"
               value="Sign Up"
             />
           </form>
-          <div className="create_new_account d-flex justify-content-center mt-3">
+          <div className="create_new_account d-flex justify-content-center mt-2">
             <p>
               <small className="mx-1">Already have an account?</small>
             </p>

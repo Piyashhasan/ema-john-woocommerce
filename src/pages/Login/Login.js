@@ -4,6 +4,13 @@ import googleImg from "../../images/google.svg";
 import { Link } from "react-router-dom";
 
 const Login = () => {
+  // ---------------------------------------
+  // =============== JS AREA ===============
+  // ---------------------------------------
+
+  // ---------------------------------------
+  // ============== HTML AREA ==============
+  // ---------------------------------------
   return (
     <div className="login_container container py-5">
       <div className="row">
