@@ -1,11 +1,14 @@
 import React, { useEffect } from "react";
 import "./Registration.css";
 import googleImg from "../../images/google.svg";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import {
   useCreateUserWithEmailAndPassword,
   useSignInWithGoogle,
+  useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 
@@ -15,6 +18,7 @@ const Registration = () => {
   // ---------------------------------------
 
   // **** declare state ****
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -24,9 +28,16 @@ const Registration = () => {
   const [createUserWithEmailAndPassword, user] =
     useCreateUserWithEmailAndPassword(auth);
 
+  // Google sign in hooks
   const [signInWithGoogle, googleUser] = useSignInWithGoogle(auth);
 
+  // Set User Name
+  const [updateProfile] = useUpdateProfile(auth);
+
   // **** declare handler ****
+  const handleName = (event) => {
+    setName(event.target.value);
+  };
   // email
   const handleEmail = (event) => {
     setEmail(event.target.value);
@@ -53,14 +64,16 @@ const Registration = () => {
   };
 
   // **** Registration Form Handler ****
-  const handleRegistrationForm = (event) => {
+  const handleRegistrationForm = async (event) => {
     event.preventDefault();
     if (password !== confirmPassword) {
       setError("Password did not match..!");
       return;
     }
     // call firebase hooks
-    createUserWithEmailAndPassword(email, password);
+    await createUserWithEmailAndPassword(email, password);
+    await updateProfile({ displayName: name });
+    toast("Registration successful");
   };
 
   // **** Navigate the path ****
@@ -80,7 +93,18 @@ const Registration = () => {
         <div className="form_field w-50 m-auto">
           <h1 className="text-center text-gray mb-4">Sign Up</h1>
           <form onSubmit={handleRegistrationForm}>
-            <div className="form-group mb-4">
+            <div className="form-group mb-3">
+              <label htmlFor="name">User Name</label>
+              <input
+                type="text"
+                name="name"
+                onBlur={handleName}
+                className="form-control mt-2"
+                placeholder="Name"
+                required
+              />
+            </div>
+            <div className="form-group mb-3">
               <label htmlFor="email">Email address</label>
               <input
                 type="email"
@@ -91,7 +115,7 @@ const Registration = () => {
                 required
               />
             </div>
-            <div className="form-group mb-4">
+            <div className="form-group mb-3">
               <label htmlFor="password">Password</label>
               <input
                 type="password"
@@ -102,7 +126,7 @@ const Registration = () => {
                 required
               />
             </div>
-            <div className="form-group mb-4">
+            <div className="form-group mb-3">
               <label htmlFor="confirmPassword">Confirm Password</label>
               <input
                 type="password"
@@ -125,7 +149,7 @@ const Registration = () => {
               <small className="mx-1">Already have an account?</small>
             </p>
             <p>
-              <Link to="/login" className="text-warning">
+              <Link to="/login" style={{ color: "#ff8c00" }}>
                 <small>Login</small>
               </Link>
             </p>
@@ -137,7 +161,10 @@ const Registration = () => {
           </div>
           <div className="google_log_in text-center">
             <button
-              onClick={() => signInWithGoogle()}
+              onClick={() => {
+                signInWithGoogle();
+                toast("Registration successful");
+              }}
               className="btn btn-dark w-100"
             >
               <img className="img-fluid mx-2" src={googleImg} alt="" />
@@ -146,6 +173,7 @@ const Registration = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import "./Login.css";
 import googleImg from "../../images/google.svg";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";
 import {
   useSignInWithEmailAndPassword,
@@ -8,6 +10,7 @@ import {
 } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import { useLocation } from "react-router-dom";
+import { useState } from "react";
 
 const Login = () => {
   // ---------------------------------------
@@ -20,15 +23,16 @@ const Login = () => {
 
   const [signInWithGoogle, googleUser] = useSignInWithGoogle(auth);
 
+  // **** declare Email Password state ****
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   // **** Login Form Handler ****
   const handleLoginForm = (event) => {
     event.preventDefault();
-    const email = event.target.email.value;
-    const password = event.target.password.value;
-
     // call firebase hooks
     signInWithEmailAndPassword(email, password);
+    toast("Login successful");
   };
 
   // **** Navigate the path ****
@@ -54,7 +58,7 @@ const Login = () => {
               <label htmlFor="email">Email address</label>
               <input
                 type="email"
-                name="email"
+                onChange={(e) => setEmail(e.target.value)}
                 className="form-control mt-2"
                 placeholder="Enter email"
                 required
@@ -64,7 +68,7 @@ const Login = () => {
               <label htmlFor="password">Password</label>
               <input
                 type="password"
-                name="password"
+                onChange={(e) => setPassword(e.target.value)}
                 className="form-control mt-2"
                 placeholder="Password"
                 required
@@ -81,7 +85,7 @@ const Login = () => {
               <small className="mx-1">New to Ema-john?</small>
             </p>
             <p>
-              <Link to="/registration" className="text-warning">
+              <Link to="/registration" style={{ color: "#ff8c00" }}>
                 <small>Create New Account</small>
               </Link>
             </p>
@@ -102,6 +106,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

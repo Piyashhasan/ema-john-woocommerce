@@ -1,6 +1,6 @@
 .login_container .form_field {
   max-width: 500px;
-  height: 640px;
+  /* height: 640px; */
   padding: 20px 40px;
   color: #2a414f;
   border: 1px solid #95a0a7;

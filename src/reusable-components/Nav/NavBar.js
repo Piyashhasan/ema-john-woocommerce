@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import auth from "../../firebase.init";
 import { signOut } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   // ---------------------------------------
@@ -75,22 +76,14 @@ const NavBar = () => {
               {user ? (
                 <button
                   onClick={handleSignOut}
-                  className="btn btn-danger w-50 h-25 mt-1"
+                  className="link btn btn-danger"
                 >
-                  Log Out
+                  sign out
                 </button>
               ) : (
-                <NavLink
-                  className="link"
-                  to="/login"
-                  style={({ isActive }) => ({
-                    color: isActive ? "orange" : "#fff",
-                    background: isActive ? "#1c2b35" : "#1c2b35",
-                    borderBottom: isActive ? "2px solid orange" : "none",
-                  })}
-                >
+                <Link className="link btn btn-danger" to="/login">
                   Login
-                </NavLink>
+                </Link>
               )}
             </Nav>
           </Navbar.Collapse>
