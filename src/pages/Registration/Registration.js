@@ -11,6 +11,7 @@ import {
   useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
+import PageTitle from "../../reusable-components/PageTitle/PageTitle";
 
 const Registration = () => {
   // ---------------------------------------
@@ -89,6 +90,7 @@ const Registration = () => {
   // ---------------------------------------
   return (
     <div className="login_container container py-5">
+      <PageTitle title={"Sign up"}></PageTitle>
       <div className="row">
         <div className="form_field w-50 m-auto">
           <h1 className="text-center text-gray mb-4">Sign Up</h1>

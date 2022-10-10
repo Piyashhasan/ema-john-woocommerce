@@ -11,6 +11,7 @@ import Products from "./Products/Products";
 import "./Shop.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import PageTitle from "../../reusable-components/PageTitle/PageTitle";
 
 const Shop = () => {
   // ---------------------------------------
@@ -62,6 +63,7 @@ const Shop = () => {
   // ---------------------------------------
   return (
     <div className="shop_container container-fluid ">
+      <PageTitle title={"Shop"}></PageTitle>
       <div className="row">
         <div className="col-md-9 py-5">
           <div className="row">

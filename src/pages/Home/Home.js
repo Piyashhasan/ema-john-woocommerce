@@ -2,6 +2,7 @@ import React from "react";
 import "./Home.css";
 import bannerImg from "../../images/home.png";
 import { Link } from "react-router-dom";
+import PageTitle from "../../reusable-components/PageTitle/PageTitle";
 
 const Home = () => {
   // ---------------------------------------
@@ -9,6 +10,7 @@ const Home = () => {
   // ---------------------------------------
   return (
     <div className="home_container container py-5">
+      <PageTitle title={"Home"}></PageTitle>
       <div className="row p-2">
         <div className="col-md-6 my-auto">
           <small className="text-warning">Sale up to 70% off</small>

@@ -8,6 +8,7 @@ import ReviewItems from "./ReviewItems/ReviewItems";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCreditCard } from "@fortawesome/free-solid-svg-icons";
 import { deleteShoppingCart, removeFromDb } from "../../utilities/fakedb";
+import PageTitle from "../../reusable-components/PageTitle/PageTitle";
 
 const Order = () => {
   const [products] = useProducts();
@@ -27,6 +28,7 @@ const Order = () => {
   };
   return (
     <div className="container py-4 order_container">
+      <PageTitle title={"Order"}></PageTitle>
       <div className="row">
         <div className="col-md-9">
           {cart.map((product) => (

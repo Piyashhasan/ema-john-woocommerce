@@ -11,6 +11,7 @@ import {
 import auth from "../../firebase.init";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
+import PageTitle from "../../reusable-components/PageTitle/PageTitle";
 
 const Login = () => {
   // ---------------------------------------
@@ -50,6 +51,7 @@ const Login = () => {
   // ---------------------------------------
   return (
     <div className="login_container container py-5">
+      <PageTitle title={"Login"}></PageTitle>
       <div className="row">
         <div className="form_field w-50 m-auto ">
           <h1 className="text-center text-gray mb-5 mt-3">Login</h1>
