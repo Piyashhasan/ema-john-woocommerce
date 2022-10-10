@@ -1,22 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Registration.css";
 import googleImg from "../../images/google.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import {
+  useCreateUserWithEmailAndPassword,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
 
 const Registration = () => {
   // ---------------------------------------
   // =============== JS AREA ===============
   // ---------------------------------------
+
+  // **** declare state ****
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
 
+  // **** declare firebase hooks ****
+  const [createUserWithEmailAndPassword, user] =
+    useCreateUserWithEmailAndPassword(auth);
+
+  const [signInWithGoogle, googleUser] = useSignInWithGoogle(auth);
+
+  // **** declare handler ****
+  // email
   const handleEmail = (event) => {
     setEmail(event.target.value);
   };
 
+  // password
   const handlePassword = (event) => {
     if (event.target.value.length < 6) {
       setError("Password must be at least 6 characters");
@@ -26,6 +42,7 @@ const Registration = () => {
     }
   };
 
+  // confirm password
   const handleConfirmPassword = (event) => {
     if (password !== event.target.value) {
       setError("Password did not match..!");
@@ -35,9 +52,25 @@ const Registration = () => {
     }
   };
 
+  // **** Registration Form Handler ****
   const handleRegistrationForm = (event) => {
     event.preventDefault();
+    if (password !== confirmPassword) {
+      setError("Password did not match..!");
+      return;
+    }
+    // call firebase hooks
+    createUserWithEmailAndPassword(email, password);
   };
+
+  // **** Navigate the path ****
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (user || googleUser) {
+      navigate("/shop");
+    }
+  }, [navigate, user, googleUser]);
+
   // ---------------------------------------
   // ============== HTML AREA ==============
   // ---------------------------------------
@@ -51,31 +84,36 @@ const Registration = () => {
               <label htmlFor="email">Email address</label>
               <input
                 type="email"
+                name="email"
                 onBlur={handleEmail}
                 className="form-control mt-2"
                 placeholder="Enter email"
+                required
               />
             </div>
             <div className="form-group mb-4">
               <label htmlFor="password">Password</label>
               <input
                 type="password"
-                onBlur={handlePassword}
+                name="password"
+                onChange={handlePassword}
                 className="form-control mt-2"
                 placeholder="Password"
+                required
               />
-              <p className="text-danger">{error}</p>
             </div>
             <div className="form-group mb-4">
               <label htmlFor="confirmPassword">Confirm Password</label>
               <input
                 type="password"
-                onBlur={handleConfirmPassword}
+                name="confirmPassword"
+                onChange={handleConfirmPassword}
                 className="form-control mt-2"
                 placeholder="Password"
+                required
               />
-              <p className="text-danger">{error}</p>
             </div>
+            <p style={{ margin: "0px", color: "red" }}>{error}</p>
             <input
               className="btn w-100 mt-3 login_button"
               type="submit"
@@ -98,9 +136,12 @@ const Registration = () => {
             </p>
           </div>
           <div className="google_log_in text-center">
-            <button className="btn btn-dark w-100">
+            <button
+              onClick={() => signInWithGoogle()}
+              className="btn btn-dark w-100"
+            >
               <img className="img-fluid mx-2" src={googleImg} alt="" />
-              <span className="">Continue with Google </span>
+              <span className="">Sign Up with Google </span>
             </button>
           </div>
         </div>

@@ -10,6 +10,7 @@ import NavBar from "./reusable-components/Nav/NavBar";
 import Order from "./pages/Order/Order";
 import Inventory from "./pages/Inventory/Inventory";
 import Registration from "./pages/Registration/Registration";
+import RequireAuth from "./reusable-components/RequireAuth/RequireAuth";
 
 function App() {
   return (
@@ -22,8 +23,22 @@ function App() {
         ></Route>
         <Route path="/home" element={<Home />}></Route>
         <Route path="/shop" element={<Shop />}></Route>
-        <Route path="/order" element={<Order />}></Route>
-        <Route path="/inventory" element={<Inventory />}></Route>
+        <Route
+          path="/order"
+          element={
+            <RequireAuth>
+              <Order />
+            </RequireAuth>
+          }
+        ></Route>
+        <Route
+          path="/inventory"
+          element={
+            <RequireAuth>
+              <Inventory />
+            </RequireAuth>
+          }
+        ></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/registration" element={<Registration />}></Route>
         <Route path="*" element={<NotFound />}></Route>

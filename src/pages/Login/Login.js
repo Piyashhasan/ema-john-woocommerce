@@ -1,12 +1,45 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Login.css";
 import googleImg from "../../images/google.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  useSignInWithEmailAndPassword,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
+import { useLocation } from "react-router-dom";
 
 const Login = () => {
   // ---------------------------------------
   // =============== JS AREA ===============
   // ---------------------------------------
+
+  // **** declare firebase hooks ****
+  const [signInWithEmailAndPassword, user] =
+    useSignInWithEmailAndPassword(auth);
+
+  const [signInWithGoogle, googleUser] = useSignInWithGoogle(auth);
+
+
+  // **** Login Form Handler ****
+  const handleLoginForm = (event) => {
+    event.preventDefault();
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+
+    // call firebase hooks
+    signInWithEmailAndPassword(email, password);
+  };
+
+  // **** Navigate the path ****
+  const navigate = useNavigate();
+  const location = useLocation();
+  let { from } = location.state || { from: { pathname: "/" } };
+  useEffect(() => {
+    if (user || googleUser) {
+      navigate(from);
+    }
+  }, [from, navigate, user, googleUser]);
 
   // ---------------------------------------
   // ============== HTML AREA ==============
@@ -16,24 +49,25 @@ const Login = () => {
       <div className="row">
         <div className="form_field w-50 m-auto ">
           <h1 className="text-center text-gray mb-5 mt-3">Login</h1>
-          <form className="">
+          <form onSubmit={handleLoginForm}>
             <div className="form-group mb-4">
-              <label for="exampleInputEmail1">Email address</label>
+              <label htmlFor="email">Email address</label>
               <input
                 type="email"
+                name="email"
                 className="form-control mt-2"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
                 placeholder="Enter email"
+                required
               />
             </div>
             <div className="form-group mb-4">
-              <label for="exampleInputPassword1">Password</label>
+              <label htmlFor="password">Password</label>
               <input
                 type="password"
+                name="password"
                 className="form-control mt-2"
-                id="exampleInputPassword1"
                 placeholder="Password"
+                required
               />
             </div>
             <input
@@ -58,9 +92,12 @@ const Login = () => {
             </p>
           </div>
           <div className="google_log_in text-center">
-            <button className="btn btn-dark w-100">
+            <button
+              onClick={() => signInWithGoogle()}
+              className="btn btn-dark w-100"
+            >
               <img className="img-fluid mx-2" src={googleImg} alt="" />
-              <span className="">Continue with Google </span>
+              <span className="">Login with Google </span>
             </button>
           </div>
         </div>

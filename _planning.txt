@@ -1,7 +1,0 @@
-0. change the porject title & favicon
-1. create react app.
-2. install react-bootstrap & configure
-3. install react-router & configure
-4. install firebase & configure
-5. install react firebase hooks
-6. authentication - registration & login / using google login

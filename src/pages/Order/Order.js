@@ -26,7 +26,7 @@ const Order = () => {
     setCart([]);
   };
   return (
-    <div className="container py-5 order_container">
+    <div className="container py-4 order_container">
       <div className="row">
         <div className="col-md-9">
           {cart.map((product) => (
