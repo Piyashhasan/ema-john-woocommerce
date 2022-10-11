@@ -27,7 +27,7 @@ const Registration = () => {
 
   // **** declare firebase hooks ****
   const [createUserWithEmailAndPassword, user] =
-    useCreateUserWithEmailAndPassword(auth);
+    useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 
   // Google sign in hooks
   const [signInWithGoogle, googleUser] = useSignInWithGoogle(auth);
@@ -39,11 +39,12 @@ const Registration = () => {
   const handleName = (event) => {
     setName(event.target.value);
   };
+
   // email
   const handleEmail = (event) => {
     setEmail(event.target.value);
   };
-
+  
   // password
   const handlePassword = (event) => {
     if (event.target.value.length < 6) {
@@ -74,9 +75,9 @@ const Registration = () => {
     // call firebase hooks
     await createUserWithEmailAndPassword(email, password);
     await updateProfile({ displayName: name });
-    toast("Registration successful");
+    alert("Registration successful & check your mail for verification");
   };
-
+  
   // **** Navigate the path ****
   const navigate = useNavigate();
   useEffect(() => {

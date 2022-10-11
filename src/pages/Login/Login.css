@@ -7,6 +7,10 @@
   border-radius: 5px;
   box-shadow: -10px 10px #ffe0b3;
 }
+.login_container form .errorMessage {
+  margin: 0;
+  color: red;
+}
 .login_container .form_field .login_button {
   background: #ffe0b3;
   color: black;

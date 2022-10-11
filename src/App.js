@@ -12,6 +12,7 @@ import Inventory from "./pages/Inventory/Inventory";
 import Registration from "./pages/Registration/Registration";
 import RequireAuth from "./reusable-components/RequireAuth/RequireAuth";
 
+
 function App() {
   return (
     <div className="App">

@@ -5,6 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";
 import {
+  useSendPasswordResetEmail,
   useSignInWithEmailAndPassword,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
@@ -19,21 +20,39 @@ const Login = () => {
   // ---------------------------------------
 
   // **** declare firebase hooks ****
-  const [signInWithEmailAndPassword, user] =
+  const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
 
   const [signInWithGoogle, googleUser] = useSignInWithGoogle(auth);
+
+  const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
 
   // **** declare Email Password state ****
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // Error message handle
+  let errorElement;
+  if (error) {
+    errorElement = <p className="errorMessage">Error: {error?.message}</p>;
+  }
+
   // **** Login Form Handler ****
   const handleLoginForm = (event) => {
     event.preventDefault();
     // call firebase hooks
+
     signInWithEmailAndPassword(email, password);
-    toast("Login successful");
+  };
+
+  // **** Handle passoword reset ****
+  const handleResetPassword = async () => {
+    if (email) {
+      await sendPasswordResetEmail(email);
+      toast("Check your email....!");
+    } else {
+      toast("Please enter your email address");
+    }
   };
 
   // **** Navigate the path ****
@@ -60,24 +79,25 @@ const Login = () => {
               <label htmlFor="email">Email address</label>
               <input
                 type="email"
-                onChange={(e) => setEmail(e.target.value)}
+                onBlur={(e) => setEmail(e.target.value)}
                 className="form-control mt-2"
                 placeholder="Enter email"
                 required
               />
             </div>
-            <div className="form-group mb-4">
+            <div className="form-group mb-2">
               <label htmlFor="password">Password</label>
               <input
                 type="password"
-                onChange={(e) => setPassword(e.target.value)}
+                onBlur={(e) => setPassword(e.target.value)}
                 className="form-control mt-2"
                 placeholder="Password"
                 required
               />
             </div>
+            {errorElement}
             <input
-              className="btn w-100 mt-4 login_button"
+              className="btn w-100 mt-3 login_button"
               type="submit"
               value="Login"
             />
@@ -90,6 +110,14 @@ const Login = () => {
               <Link to="/registration" style={{ color: "#ff8c00" }}>
                 <small>Create New Account</small>
               </Link>
+            </p>
+          </div>
+          <div className="d-flex justify-content-center">
+            <p>
+              Forget passowrd?{" "}
+              <Link onClick={handleResetPassword} className="text-primary">
+                Reset your password
+              </Link>{" "}
             </p>
           </div>
           <div className="before_after text-center ">
