@@ -20,8 +20,8 @@ const RequireAuth = ({ children }) => {
   if (!user) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
-  
-  if (!user.emailVerified) {
+
+  if (!user.emailVerified && user.email) {
     return (
       <div className="verification_container container py-5">
         <div className="row text-center mt-5">
@@ -32,7 +32,7 @@ const RequireAuth = ({ children }) => {
             <button
               onClick={async () => {
                 await sendEmailVerification();
-                toast("sent email");
+                toast("Varification link send to your mail");
               }}
               className="btn btn-primary"
             >

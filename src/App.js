@@ -2,14 +2,14 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
-import Home from "./pages/Home/Home";
-import Login from "./pages/Login/Login";
-import NotFound from "./pages/NotFound/NotFound";
-import Shop from "./pages/Shop/Shop";
 import NavBar from "./reusable-components/Nav/NavBar";
+import Home from "./pages/Home/Home";
+import Shop from "./pages/Shop/Shop";
 import Order from "./pages/Order/Order";
 import Inventory from "./pages/Inventory/Inventory";
+import Login from "./pages/Login/Login";
 import Registration from "./pages/Registration/Registration";
+import NotFound from "./pages/NotFound/NotFound";
 import RequireAuth from "./reusable-components/RequireAuth/RequireAuth";
 
 

@@ -127,7 +127,10 @@ const Login = () => {
           </div>
           <div className="google_log_in text-center">
             <button
-              onClick={() => signInWithGoogle()}
+              onClick={() => {
+                signInWithGoogle();
+                toast("Login successful");
+              }}
               className="btn btn-dark w-100"
             >
               <img className="img-fluid mx-2" src={googleImg} alt="" />
